@@ -27,7 +27,7 @@ def load_and_clean_data():
     #  Clean the coordinates and dates
     df_clean = df_clean[(df_clean['latitude'] != 0) | (df_clean['longitude'] != 0)]
     df_clean['date'] = pd.to_datetime(df_clean['date'])
-     return df_clean
+    return df_clean
 
 
     #  Standardize all units to 1 KG
