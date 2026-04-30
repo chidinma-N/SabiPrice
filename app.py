@@ -21,13 +21,15 @@ def haversine(lat1, lon1, lat2, lon2):
 def load_and_clean_data():
     # to Fetch the live data directly from HDX
     url = "https://data.humdata.org/dataset/42db041f-7aaf-4ab4-961f-2a12096861e7/resource/12b51155-0cd3-4806-9924-61ede4077591/download/wfp_food_prices_nga.csv"
-    df_raw = pd.read_csv(url)
+    df_raw = pd.read_csv(url, skiprows=[1])
     df_clean = df_raw.copy()
-    
+
     #  Clean the coordinates and dates
     df_clean = df_clean[(df_clean['latitude'] != 0) | (df_clean['longitude'] != 0)]
     df_clean['date'] = pd.to_datetime(df_clean['date'])
-    
+     return df_clean
+
+
     #  Standardize all units to 1 KG
     unit_map = {
         'KG': 1, '100 KG': 100, '50 KG': 50, '2.7 KG': 2.7, '2.6 KG': 2.6, 
