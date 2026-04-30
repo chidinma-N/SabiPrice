@@ -53,7 +53,7 @@ def load_and_clean_data():
     return df_clean
 
 def find_best_markets(df, my_lat, my_lon, commodity, max_distance_km):
-    df_target = df[df['commodity'].str.lower().str.contains(commodity.lower(), regex=False, na=False)].copy()
+    df_target = df[df['commodity'].str.lower().str.contains('commodity'.lower(), regex=False, na=False)].copy()
     
     if df_target.empty: 
         return "No data found for this crop."
